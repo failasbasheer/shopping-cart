@@ -1,0 +1,36 @@
+<section>
+    <div class="container mt-5">
+        <h4>Current oders</h4>
+     </div>
+<table class="table table-sm mt-3">
+  <thead>
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">Date</th>
+      <th scope="col">Address</th>
+      <th scope="col">Pincode</th>
+      <th scope="col">Mobile</th>
+         <th scope="col">Amount</th>
+       <th scope="col">payment</th>
+       <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each oders}}
+    <tr>
+      <th scope="row">1</th>
+      <td>{{this.date}}</td>
+      <td>{{this.deliveryDetails.address}}</td>
+      <td>{{this.deliveryDetails.pincode}}</td>
+      <td>{{this.deliveryDetails.mobile}}</td>
+      <td>{{this.totalAmount}}</td>
+      <td>{{this.paymentMethod}}</td>
+      <td>{{this.status}}</td>
+      <td><a href="/order-products/{{this._id}}" class="btn btn-secondary">View Products</a></td>
+      <td><a href="/cancel-oder/{{this._id}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete oder placed on {{this.date}} ?')">Cancel order</a></td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+    </div>
+    </section>
