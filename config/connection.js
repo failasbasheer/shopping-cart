@@ -4,19 +4,25 @@ const state = {
   db: null,
 };
 
-// Use environment variable OR fallback to localhost
-const url = process.env.MONGO_URL || "mongodb://127.0.0.1:27017";
+// MongoDB Atlas connection string
+const url = process.env.MONGO_URL || "mongodb+srv://failasbash650:<fa>@cluster0.2jhflva.mongodb.net/shopping?retryWrites=true&w=majority&appName=Cluster0";
 const dbName = "shopping";
 
-const client = new MongoClient(url);
+// Optional config for better compatibility
+const client = new MongoClient(url, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 const connect = async (cb) => {
   try {
     await client.connect();
     const db = client.db(dbName);
     state.db = db;
+    console.log("✅ MongoDB Atlas Connected");
     return cb();
   } catch (err) {
+    console.error("❌ MongoDB Connection Error:", err);
     return cb(err);
   }
 };
