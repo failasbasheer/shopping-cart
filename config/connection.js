@@ -5,7 +5,7 @@ const state = {
 };
 
 // MongoDB Atlas connection string
-const url = process.env.MONGO_URL || "mongodb+srv://failasbash650:<fa>@cluster0.2jhflva.mongodb.net/shopping?retryWrites=true&w=majority&appName=Cluster0";
+const url = process.env.MONGO_URL || "mongodb+srv://failasbash650:failas650@cluster0.2jhflva.mongodb.net/shopping?retryWrites=true&w=majority&appName=Cluster0";
 const dbName = "shopping";
 
 // Optional config for better compatibility
