@@ -1,263 +1,131 @@
-<section>
-       <style>
- section{
-    background: #ddd;
-    min-height: 100vh;
-    vertical-align: middle;
-    display: flex;
-    font-family: sans-serif;
-    font-size: 0.8rem;
-    font-weight: bold;
-}
-.title{
-    margin-bottom: 5vh;
-}
-.card{
-    margin: auto;
-    max-width: 950px;
-    width: 90%;
-    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 1rem;
-    border: transparent;
-}
-@media(max-width:767px){
-    .card{
-        margin: 3vh auto;
-    }
-}
-.cart{
-    background-color: #fff;
-    padding: 4vh 5vh;
-    border-bottom-left-radius: 1rem;
-    border-top-left-radius: 1rem;
-}
-@media(max-width:767px){
-    .cart{
-        padding: 4vh;
-        border-bottom-left-radius: unset;
-        border-top-right-radius: 1rem;
-    }
-}
-.summary{
-    background-color: #ddd;
-    border-top-right-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-    padding: 4vh;
-    color: rgb(65, 65, 65);
-}
-@media(max-width:767px){
-    .summary{
-    border-top-right-radius: unset;
-    border-bottom-left-radius: 1rem;
-    }
-}
-.summary .col-2{
-    padding: 0;
-}
-.summary .col-10
-{
-    padding: 0;
-}.row{
-    margin: 0;
-}
-.title b{
-    font-size: 1.5rem;
-}
-.main{
-    margin: 0;
-    padding: 2vh 0;
-    width: 100%;
-}
-.col-2, .col{
-    padding: 0 1vh;
-}
-a{
-    padding: 0 1vh;
-}
-.close{
-    margin-left: auto;
-    font-size: 0.7rem;
-}
-img{
-    width: 3.5rem;
-}
-.back-to-shop{
-    margin-top: 4.5rem;
-}
-h5{
-    margin-top: 4vh;
-}
-hr{
-    margin-top: 1.25rem;
-}
-form{
-    padding: 2vh 0;
-}
-select{
-    border: 1px solid rgba(0, 0, 0, 0.137);
-    padding: 1.5vh 1vh;
-    margin-bottom: 4vh;
-    outline: none;
-    width: 100%;
-    background-color: rgb(247, 247, 247);
-}
-input{
-    border: 1px solid rgba(0, 0, 0, 0.137);
-    padding: 1vh;
-    margin-bottom: 4vh;
-    outline: none;
-    width: 100%;
-    background-color: rgb(247, 247, 247);
-}
-input:focus::-webkit-input-placeholder
-{
-      color:transparent;
-}
-.btn{
-    background-color: #000;
-    border-color: #000;
-    color: white;
-    width: 100%;
-    font-size: 0.7rem;
-    margin-top: 4vh;
-    padding: 1vh;
-    border-radius: 0;
-}
-.btn:focus{
-    box-shadow: none;
-    outline: none;
-    box-shadow: none;
-    color: white;
-    -webkit-box-shadow: none;
-    -webkit-user-select: none;
-    transition: none; 
-}
-.btn:hover{
-    color: white;
-}
-a{
-    color: black; 
-}
-a:hover{
-    color: black;
-    text-decoration: none;
-}
- #code{
-    background-image: linear-gradient(to left, rgba(255, 255, 255, 0.253) , rgba(255, 255, 255, 0.185)), url("https://img.icons8.com/small/16/000000/long-arrow-right.png");
-    background-repeat: no-repeat;
-    background-position-x: 95%;
-    background-position-y: center;
-}
-    </style>
-<div class="card">
-  
-  <div class="alert alert-danger" id="remove" style="display: none;" role="alert">
- product removed from cart
-</div>
- 
-            <div class="row">
-                <div class="col-md-8 cart">
-                    <div class="title">
-                        <div class="row">
-                            <div class="col"><h4><b>Shopping Cart</b></h4></div>
-                            <div class="col align-self-center text-right text-muted">{{itemCount}}</div>
-                        </div>
-                    </div>    
-                    {{#each products}}
-                    
-                    <div class="row border-top border-bottom">
-                        <div class="row main align-items-center">
-                            <div class="col-2"><img class="img-fluid" src='./product-images/{{this.product._id}}.jpg'></div>
-                            <div class="col">
-                                <div class="row text-muted">{{this.product.Category}}</div>
-                                <div class="row">{{this.product.Name}}</div>
-                            </div>
-
-                            <div class="col">
-                               
-                                <button class="cart-item-count mr-3" onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}',-1)">-</button>
-                                <span id="{{this.product._id}}">{{this.quantity}}</span>
-                                <button class="cart-item-count ml-3" onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}',1)">+</button>
-
-                            </div>
-                            <div class="col">MRP {{this.product.Price}} <button class="btn btn-danger remove" onclick="deleteCartProduct('{{this._id}}','{{this.product._id}}')">Remove</button></div>
-                        </div>
-                    </div>
-                             
-
-                    {{/each}}
-                    <div class="back-to-shop"><a href="/">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
+<section class="py-5 bg-gradient">
+  <div class="container">
+    <div class="card rounded-4 shadow-lg border-0">
+      <div class="row g-0">
+        <div class="col-md-8 p-4">
+          <h4 class="fw-bold mb-4 text-primary">Shopping Cart</h4>
+          <p class="text-muted mb-3">{{itemCount}} item(s) in your cart</p>
+          {{#each products}}
+          <div class="card rounded-3 mb-3 border">
+            <div class="row g-0 align-items-center">
+              <div class="col-md-3 p-3">
+                <img src='./product-images/{{this.product._id}}.jpg' class="img-fluid rounded" alt="{{this.product.Name}}">
+              </div>
+              <div class="col-md-6 p-3">
+                <p class="text-muted small mb-1">{{this.product.Category}}</p>
+                <h6 class="text-primary fw-semibold mb-2">{{this.product.Name}}</h6>
+                <div class="d-flex align-items-center">
+                  <button class="btn btn-sm btn-outline-secondary rounded-pill me-2" onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}',-1)">-</button>
+                  <span id="{{this.product._id}}" class="fw-bold">{{this.quantity}}</span>
+                  <button class="btn btn-sm btn-outline-secondary rounded-pill ms-2" onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}',1)">+</button>
                 </div>
-                <div class="col-md-4 summary">
-                    <div><h5><b>Summary</b></h5></div>
-                    <hr>
-                    <div class="row">
-                        <div class="col" style="padding-left:0;">{{itemCount}}</div>
-                        <div class="col text-right">Rs {{total}}</div>
-                    </div>
-                    <form>
-                        <p>SHIPPING</p>
-                        <select><option class="text-muted">Standard-Delivery- Free</option></select>
-                        {{!-- <p>GIVE CODE</p>
-                        <input id="code" placeholder="Enter your code"> --}}
-                    </form>
-                    <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-                        <div class="col">TOTAL PRICE</div>
-                        <div id="total" class="col text-right">RS {{total}}</div>
-                    </div>
-                    <a href="/place-oder" class="btn btn-secondary">PLACE ODER</a>
-                </div>
+              </div>
+              <div class="col-md-3 text-end p-3">
+                <p class="mb-0 fw-bold text-muted">₹{{this.product.Price}}</p>
+                <button class="btn btn-sm btn-outline-danger rounded-pill mt-2" onclick="deleteCartProduct('{{this._id}}','{{this.product._id}}')">Remove</button>
+              </div>
             </div>
-            
+          </div>
+          {{/each}}
+          <div class="mt-3">
+            <a href="/" class="text-decoration-none text-muted"><i class="bi bi-arrow-left me-2"></i>Back to shop</a>
+          </div>
         </div>
+        <div class="col-md-4 bg-light p-4">
+          <h5 class="fw-bold mb-4 text-primary">Summary</h5>
+          <hr class="text-muted">
+          <div class="d-flex justify-content-between mb-3">
+            <p class="text-muted">{{itemCount}} item(s)</p>
+            <p class="fw-bold text-muted">₹{{total}}</p>
+          </div>
+          <p class="text-muted mb-2">Shipping</p>
+          <select class="form-select form-select-sm rounded-pill mb-3">
+            <option class="text-muted">Standard Delivery - Free</option>
+          </select>
+          <hr class="text-muted">
+          <div class="d-flex justify-content-between mb-4">
+            <h6 class="fw-bold text-primary">Total Price</h6>
+            <h6 id="total" class="fw-bold text-primary">₹{{total}}</h6>
+          </div>
+          <a href="/place-oder" class="btn btn-primary btn-lg rounded-pill w-100">Place Order</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<script>
-    function changeQuantity(cartId,proId,userId,count){
-        let quantity=parseInt(document.getElementById(proId).innerHTML)
-        count=parseInt(count)
-        $.ajax({
-            url:'/change-product-quantity',
-            data:{
-                user:userId,
-                cart:cartId,
-                product:proId,
-                count:count,
-                quantity:quantity
-            },
-            method:'post',
-            success:(response)=>{
-               if(response.removeProduct){
-                $('#remove').show();
-                 location.reload()
-               }
-               else{
-                console.log(response)
-                document.getElementById(proId).innerHTML=quantity+count
-                 document.getElementById('total').innerHTML=response.total
-               }
-            }
-        })
-    }
-</script>
-<script>
-    function deleteCartProduct(cartId,proId){
-        $.ajax({
-            url:'/delete-cart-product',
-            data:{
-                cart:cartId,
-                product:proId
-            },
-            method:'post',
-            success:(response)=>{
-                if(response.removedProduct){
-                     $('#remove').show();
-                 location.reload()
-                }else{
-                    alert('failed to remove product')
-                }
-            }
-        })
-    }
+<style>
+  .bg-gradient {
+    background: linear-gradient(135deg, #f0f2f5, #e2e8f0); /* Light and modern background */
+    min-height: 100vh;
+    padding-top: 4rem;
+  }
 
+  .card {
+    overflow: hidden; /* Ensure rounded corners are respected */
+  }
+
+  .btn-outline-secondary {
+    border-radius: 999px;
+    border-color: #ced4da;
+    color: #6c757d;
+  }
+
+  .btn-outline-secondary:hover {
+    background-color: #e9ecef;
+  }
+
+  .btn-outline-danger {
+    border-radius: 999px;
+  }
+
+  .bi-arrow-left {
+    font-size: 0.9rem;
+  }
+</style>
+
+<script>
+  function changeQuantity(cartId, proId, userId, count) {
+    let quantity = parseInt(document.getElementById(proId).innerHTML);
+    count = parseInt(count);
+    $.ajax({
+      url: '/change-product-quantity',
+      data: {
+        user: userId,
+        cart: cartId,
+        product: proId,
+        count: count,
+        quantity: quantity
+      },
+      method: 'post',
+      success: (response) => {
+        if (response.removeProduct) {
+          // Consider a more user-friendly removal animation or message
+          location.reload();
+        } else {
+          document.getElementById(proId).innerHTML = quantity + count;
+          document.getElementById('total').innerHTML = '₹' + response.total;
+        }
+      }
+    });
+  }
+
+  function deleteCartProduct(cartId, proId) {
+    $.ajax({
+      url: '/delete-cart-product',
+      data: {
+        cart: cartId,
+        product: proId
+      },
+      method: 'post',
+      success: (response) => {
+        if (response.removedProduct) {
+          // Consider a more user-friendly removal animation or message
+          location.reload();
+        } else {
+          alert('Failed to remove product');
+        }
+      }
+    });
+  }
 </script>

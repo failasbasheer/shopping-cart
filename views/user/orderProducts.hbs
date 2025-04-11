@@ -1,29 +1,87 @@
-<section>
-    <div class="container mt-5">
-<table class="table table-sm mt-3">
-  <thead>
-    <tr>
-      <th scope="col">No</th>
-      <th scope="col">Name</th>
-      <th scope="col">Category</th>
-      <th scope="col">Description</th>
-         <th scope="col">PRice</th>
-       <th scope="col">Image</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each orderPro}}
-      <th scope="row">1</th>
-      <td>{{this.[0].Name}}</td>
-      <td>{{this.[0].Category}}</td>
-      <td>{{this.[0].Description}}</td>
-      <td>{{this.[0].Price}}</td>
-      <td><img style="width: 50px; height:60px;" src="/product-images/{{this.[0]._id}}.jpg" alt="Loading"></td>
-      <td><a href="/delete-order-product/?proID={{this.[0]._id}}&orderID={{../orderID}}"  class="btn btn-danger "onclick="return confirm('Are you sure you want to cancel {{this.[0].Name}} from your order ?')" >Cancel</a></td>
-    </tr>
-    {{/each}}
-  </tbody>
-</table>
+<section class="py-5 bg-gradient">
+  <div class="container">
+    <h2 class="fw-bold mb-4 text-primary">Products in This Order</h2>
+    <div class="table-responsive">
+      <table class="table table-hover table-borderless shadow rounded-4 overflow-hidden bg-white">
+        <thead class="bg-light text-muted">
+          <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each orderPro}}
+          <tr>
+            <th scope="row" class="text-muted">{{@index}}</th>
+            <td class="text-muted">{{this.[0].Name}}</td>
+            <td class="text-muted">{{this.[0].Category}}</td>
+            <td class="text-muted">{{this.[0].Description}}</td>
+            <td class="text-muted">₹{{this.[0].Price}}</td>
+            <td>
+              <img src="/product-images/{{this.[0]._id}}.jpg" alt="{{this.[0].Name}}" class="img-thumbnail rounded" style="width: 60px; height: 70px; object-fit: cover;">
+            </td>
+            <td>
+              <a href="/delete-order-product/?proID={{this.[0]._id}}&orderID={{../orderID}}"
+                 class="btn btn-outline-danger btn-sm rounded-pill"
+                 onclick="return confirm('Are you sure you want to cancel {{this.[0].Name}} from your order?')">
+                Cancel
+              </a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
     </div>
-    </section>
+  </div>
+</section>
 
+<style>
+  .bg-gradient {
+    background: linear-gradient(135deg, #f0f2f5, #e2e8f0); /* Light and modern background */
+    min-height: 100vh; /* Ensure full viewport height */
+    padding-top: 4rem; /* Add some top padding */
+  }
+
+  .table-hover tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.03); /* Light hover effect */
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .btn-outline-danger {
+    color: #dc3545;
+    border-color: #dc3545;
+  }
+
+  .btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: #fff;
+  }
+
+  h2 {
+    font-size: 2rem; /* Slightly larger heading */
+    color: #007bff; /* Primary color for heading */
+    margin-bottom: 1.5rem;
+  }
+
+  .table th,
+  .table td {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 0.75rem 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .table thead th {
+    border-bottom-width: 2px;
+  }
+
+  .img-thumbnail {
+    border: none; /* Remove default thumbnail border */
+    padding: 0.25rem;
+    background-color: #f8f9fa; /* Light background for thumbnails */
+  }
+</style>

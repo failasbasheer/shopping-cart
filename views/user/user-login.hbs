@@ -1,44 +1,62 @@
-<section class="vh-100 gradient-custom">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div class="card bg-dark text-white" style="border-radius: 1rem;">
-          <div class="card-body p-5 text-center">
+<section class="d-flex justify-content-center align-items-center vh-100 bg-gradient">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6 col-xl-5">
+        <div class="card rounded-4 shadow-lg border-0">
+          <div class="card-body p-4 p-md-5">
+            <h3 class="fw-bold mb-4 text-center text-primary">Welcome Back!</h3>
+            <p class="text-muted mb-4 text-center">Sign in to continue your shopping experience.</p>
 
-            <div class="mb-md-5 mt-md-4 pb-5">
-
-              <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-              <p class="text-white-50 mb-5">Please enter your email and password!</p>
-       <form action='/login' method="post">
-              <div class="form-outline form-white mb-4">
-                <input type="email" class="form-control form-control-lg" placeholder="Email" name="email" />
+            <form action="/login" method="post">
+              <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control form-control-lg rounded-pill border-primary" id="email" name="email" placeholder="Enter your email" required>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control form-control-lg rounded-pill border-primary" id="password" name="password" placeholder="Enter your password" required>
               </div>
 
-              <div class="form-outline form-white mb-4">
-                <input type="password"  class="form-control form-control-lg" placeholder="password" name="password"/>
+              {{#if loginErr}}
+              <div class="alert alert-danger rounded-pill" role="alert">
+                Invalid email or password.
               </div>
-  {{#if loginErr}}
-<div class="alert alert-danger" role="alert">
-  username or password incorrect
-</div>
-{{/if}}
-              <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
-</form>
-              <div class="d-flex justify-content-center text-center mt-4 pt-1">
-                <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
-               <a href="#!" class="text-white"><i class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
-                <a href="#!" class="text-white"><i class="fab fa-google fa-lg"></i></a>
-          
-            </div>
+              {{/if}}
 
-            <div>
-              <p class="mb-0">Don't have an account? <a href="/signup" class="text-white-50 fw-bold">Sign Up</a>
-              </p>
-            </div>
+              <div class="d-grid">
+                <button class="btn btn-primary btn-lg rounded-pill" type="submit">Login</button>
+              </div>
+            </form>
 
+            <hr class="my-4">
+
+            <div class="text-center">
+
+              <p class="mt-2 text-muted small">Don't have an account? <a href="/signup" class="text-primary fw-bold text-decoration-none">Sign up</a></p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+<style>
+  .bg-gradient {
+    background: linear-gradient(135deg, #f0f2f5, #e2e8f0); /* Light and modern background */
+    min-height: 100vh; /* Ensure full viewport height */
+  }
+
+  .form-control::placeholder {
+    color: #adb5bd; /* Muted placeholder text */
+  }
+
+  .btn-primary {
+    background-color: #007bff; /* Primary brand color */
+    border-color: #007bff;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+</style>

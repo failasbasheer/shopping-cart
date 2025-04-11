@@ -1,174 +1,84 @@
-<section class="dminpro">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
-.adminpro{
-  padding: 0 !important;
-  margin: 0 !important;
-}
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif
-}
-
-
-
-.pic {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-}
-
-.table thead {
-    background-color: rgb(141, 141, 141);
-}
-.btn{
-    font-size: 14px;
-}
-.table thead th {
-    padding: 30px;
-    font-size: 14px;
-    color: white;
-}
-
-.table tbody td input[type="checkbox"] {
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    background-color: #eee;
-    position: relative;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-.container .table-wrap {
-
-    margin: 20px auto;
-    overflow-x: auto
-
-}
-
-.container .table-wrap::-webkit-scrollbar {
-    height: 5px;
-}
-
-.container .table-wrap::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background-image: linear-gradient(to right, #5D7ECD, #0C91E6);
-}
-
-.table>:not(caption)>*>* {
-    padding: 2rem 0.5rem;
-}
-
-.input {
-    width: 30px;
-    height: 30px;
-    color: black;
-    font-weight: 600;
-    outline: none;
-    padding: 8px;
-}
-
-::placeholder {
-    color: black;
-    font-weight: 600;
-}
-
-.table tbody td input[type="checkbox"]:after {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    font-family: "Font Awesome 5 Free";
-    font-weight: 600;
-    content: "\f00c";
-    color: #fff;
-    font-size: 15px;
-    display: none
-}
-
-.table tbody td input[type="checkbox"]:checked,
-.table tbody td input[type="checkbox"]:checked:hover {
-    background-color: slategray;
-}
-
-.table tbody td input[type="checkbox"]:checked::after {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.table tbody td input[type="checkbox"]:hover {
-    background-color: #ddd;
-}
-
-.table tbody td {
-    padding: 30px;
-    margin: 0;
-    font-size: 14.5px;
-    font-weight: 600;
-}
-
-.table tbody td .fa-times {
-    color: #D32F2F;
-}
-
-
-.text-muted {
-    font-size: 12.5px;
-}
-
-.table tbody tr td:nth-of-type(3) {
-    min-width: 320px;
-}
-
-@media(min-width: 992px) {
-    .container .table-wrap {
-        overflow: hidden;
-    }
-}
-  </style>
+<section class="py-5 bg-light">
   <div class="container">
-        <div class="table-wrap">
-            <table class="table table-responsive table-borderless">
-                <thead>
-                  
-                    <th>Product</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th><a class="btn btn-light" href="admin/add-product">Add Product</a></th>
-                    <th></th>
-                </thead>
-                <tbody>
-                  {{#each products}}
-                    <tr class="align-middle alert border-bottom" role="alert">
-                        <td class="text-center">
-                            <img class="pic"
-                            style="width: 50px; height:60px;"
-                                src="/product-images/{{this._id}}.jpg" alt="Loading"
-                                alt="">
-                        </td>
-                        <td>
-                            <div>
-                                <p class="m-0 fw-bold">{{this.Name}}</p>
-                                <p class="m-0 text-muted">{{this.Category}}</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="fw-600">{{this.Description}}</div>
-                        </td>
-                        <td>
-                            ₹{{this.Price}}
-                        </td>
-                        <td><a href="/admin/edit-product/{{this._id}}" class="btn btn-primary" >Edit</a></td>
-                        <td><a href="/admin/delete-product/{{this._id}}"  class="btn btn-danger "onclick="return confirm('Are you sure you want to delete {{this.Name}} ?')" >Delete</a></td>
-                    </tr>
-                    {{/each}}
-                </tbody>
-            </table>
-        </div>
+    <h2 class="fw-bold mb-4 text-primary">All Products</h2>
+    <div class="table-responsive rounded-4 overflow-hidden shadow-sm">
+      <table class="table table-hover bg-white align-middle">
+        <thead class="bg-light text-muted">
+          <tr>
+            <th scope="col" class="pt-3 pb-3"></th>
+            <th scope="col" class="pt-3 pb-3">Name</th>
+            <th scope="col" class="pt-3 pb-3">Category</th>
+            <th scope="col" class="pt-3 pb-3">Description</th>
+            <th scope="col" class="pt-3 pb-3 text-end">Price</th>
+            <th scope="col" class="pt-3 pb-3 text-end"><a href="/admin/add-product" class="btn btn-primary btn-sm rounded-pill">Add Product</a></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each products}}
+          <tr>
+            <td class="text-center">
+              <img src="/product-images/{{this._id}}.jpg" alt="{{this.Name}}" class="img-fluid rounded" style="width: 50px; height: 60px; object-fit: cover;">
+            </td>
+            <td>
+              <p class="fw-bold text-primary mb-0">{{this.Name}}</p>
+            </td>
+            <td class="text-muted">{{this.Category}}</td>
+            <td class="text-muted">{{this.Description}}</td>
+            <td class="text-end text-muted">₹{{this.Price}}</td>
+            <td class="text-end">
+              <a href="/admin/edit-product/{{this._id}}" class="btn btn-outline-primary btn-sm rounded-pill me-2">Edit</a>
+              <a href="/admin/delete-product/{{this._id}}" class="btn btn-outline-danger btn-sm rounded-pill" onclick="return confirm('Are you sure you want to delete {{this.Name}} ?')">Delete</a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
     </div>
+  </div>
 </section>
+
+<style>
+  .bg-light {
+    background-color: #f8f9fa !important;
+  }
+
+  .table th,
+  .table td {
+    padding: 1rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+
+  .btn-outline-primary {
+    color: #007bff;
+    border-color: #007bff;
+  }
+
+  .btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+  .btn-outline-danger {
+    color: #dc3545;
+    border-color: #dc3545;
+  }
+
+  .btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: #fff;
+  }
+
+  h2 {
+    color: #007bff;
+  }
+</style>

@@ -1,36 +1,62 @@
-<section>
-    <div class="container mt-4">
-    <div class="row">
-        <div class="col-md-6">
-            <h2 class="text-center">Edit Product</h2>
-                <form action="/admin/edit-product/{{product._id}}" method="post" enctype="multipart/form-data">
-                    <label for="">Name</label>
-                    <input type="text" name="Name" class="form-control" value="{{product.Name}}">
-
-                      <label for="">Category</label>
-                    <input type="text" name="Category" class="form-control" value="{{product.Category}}">
-
-                     <label for="">Price</label>
-                    <input type="text" name="Price" class="form-control" value="{{product.Price}}">
-
-                     <label for="">Description</label>
-                    <input type="text" name="Description" class="form-control" value="{{product.Description}}"><br>
-
-                     <label for="">Image</label>
-                    <img style="width: 120px; height:auto;" src="/product-images/{{product._id}}.jpg" alt="Loading" id="imgView"><br><br>
-                    <input type="file" name="Image" onchange="viewImage(event)"><br>
-                     
-                       <button type="submit" class="btn btn-primary mt-4">Submit</button>
-                </form>
-
-            </h2>
-        </div>
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 card rounded-4 shadow-lg border-0 p-4 p-md-5">
+        <h2 class="text-center mb-4 text-primary fw-bold">Edit Product</h2>
+        <form action="/admin/edit-product/{{product._id}}" method="post" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="name" class="form-label text-muted">Name</label>
+            <input type="text" class="form-control form-control-lg rounded-pill border-primary" id="name" name="Name" value="{{product.Name}}" required>
+          </div>
+          <div class="mb-3">
+            <label for="category" class="form-label text-muted">Category</label>
+            <input type="text" class="form-control form-control-lg rounded-pill border-primary" id="category" name="Category" value="{{product.Category}}" required>
+          </div>
+          <div class="mb-3">
+            <label for="price" class="form-label text-muted">Price</label>
+            <input type="text" class="form-control form-control-lg rounded-pill border-primary" id="price" name="Price" value="{{product.Price}}" required>
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label text-muted">Description</label>
+            <textarea class="form-control form-control-lg rounded-3 border-primary" id="description" name="Description" rows="3">{{product.Description}}</textarea>
+          </div>
+          <div class="mb-3">
+            <label for="image" class="form-label text-muted">Image</label>
+            <img src="/product-images/{{product._id}}.jpg" alt="Current Product Image" class="img-thumbnail rounded mb-2" style="width: 120px; height: auto;" id="imgView">
+            <input type="file" class="form-control form-control-lg rounded-pill border-primary" id="image" name="Image" onchange="viewImage(event)">
+            <small class="text-muted">Upload a new image to update the current one.</small>
+          </div>
+          <div class="d-grid mt-4">
+            <button type="submit" class="btn btn-primary btn-lg rounded-pill">Save Changes</button>
+          </div>
+        </form>
+      </div>
     </div>
-    </div>
+  </div>
 </section>
 
+<style>
+  .bg-light {
+    background-color: #f8f9fa !important;
+  }
+
+  .form-control::placeholder {
+    color: #adb5bd;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+</style>
+
 <script>
-    function viewImage(event){
-        document.getElementById('imgView').src=URL.createObjectURL(event.target.files[0])
-    }
+  function viewImage(event) {
+    document.getElementById('imgView').src = URL.createObjectURL(event.target.files[0]);
+  }
 </script>

@@ -1,3 +1,15 @@
-<h1>{{message}}</h1>
-<h2>{{error.status}}</h2>
-<pre>{{error.stack}}</pre>
+<section class="bg-gradient d-flex justify-content-center align-items-center vh-100">
+  <div class="container text-center">
+    <h1 class="fw-bold text-danger mb-4" style="font-size: 3rem;">{{message}}</h1>
+    <h2 class="text-muted mb-3">{{error.status}}</h2>
+    <p class="text-muted small">Something went wrong on our server.</p>
+    <pre class="bg-light text-muted rounded p-3" style="max-height: 300px; overflow-y: auto; text-align: left;">{{error.stack}}</pre>
+    <a href="/" class="btn btn-primary rounded-pill mt-4">Go Back to Homepage</a>
+  </div>
+</section>
+
+<style>
+  .bg-gradient {
+    background: linear-gradient(135deg, #f0f2f5, #e2e8f0); /* Light and modern background */
+  }
+</style>
