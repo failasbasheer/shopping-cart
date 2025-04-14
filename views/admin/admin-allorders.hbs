@@ -1,0 +1,93 @@
+<section class="py-5 bg-gradient">
+  <div class="container">
+    <h2 class="fw-bold mb-4 text-primary">Current Orders</h2>
+    <div class="table-responsive">
+      <table class="table table-hover table-borderless shadow rounded-4 overflow-hidden bg-white">
+        <thead class="bg-light text-muted">
+          <tr>
+            <th>No</th>
+            <th>Date</th>
+            <th>Address</th>
+            <th>Pincode</th>
+            <th>Mobile</th>
+            <th>Amount</th>
+            <th>Payment</th>
+            <th>Status</th>
+            <th colspan="2">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each oders}}
+          <tr>
+            <th scope="row" class="text-muted">{{@index}}</th>
+            <td class="text-muted">{{this.date}}</td>
+            <td class="text-muted">{{this.deliveryDetails.address}}</td>
+            <td class="text-muted">{{this.deliveryDetails.pincode}}</td>
+            <td class="text-muted">{{this.deliveryDetails.mobile}}</td>
+            <td class="text-muted">₹{{this.totalAmount}}</td>
+            <td class="text-muted">{{this.paymentMethod}}</td>
+            <td class="text-muted">{{this.status}}</td>
+            <td>
+              <a href="/order-products/{{this._id}}" class="btn btn-outline-primary btn-sm rounded-pill">View</a>
+            </td>
+            <td>
+              <a href="/cancel-oder/{{this._id}}" class="btn btn-outline-danger btn-sm rounded-pill"
+                 onclick="return confirm('Are you sure you want to cancel the order placed on {{this.date}}?')">Cancel</a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<style>
+  .bg-gradient {
+    background: linear-gradient(135deg, #f0f2f5, #e2e8f0); /* Light and modern background */
+    min-height: 100vh; /* Ensure full viewport height */
+    padding-top: 4rem; /* Add some top padding */
+  }
+
+  .table-hover tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.03); /* Light hover effect on rows */
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .btn-outline-primary {
+    color: #007bff;
+    border-color: #007bff;
+  }
+
+  .btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+  .btn-outline-danger {
+    color: #dc3545;
+    border-color: #dc3545;
+  }
+
+  .btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: #fff;
+  }
+
+  h2 {
+    font-size: 2rem; /* Slightly larger heading */
+    color: #007bff; /* Primary color for heading */
+    margin-bottom: 1.5rem; /* Adjusted margin */
+  }
+
+  .table th,
+  .table td {
+    border-bottom: 1px solid #e0e0e0; /* Light border for cells */
+    padding: 0.75rem 0.5rem; /* Adjusted padding for better spacing */
+    font-size: 0.9rem; /* Slightly smaller font for table content */
+  }
+
+  .table thead th {
+    border-bottom-width: 2px;
+  }
+</style>

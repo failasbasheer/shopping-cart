@@ -57,7 +57,7 @@ router.get('/admin/all-orders',async(req,res)=>{
   console.log(order);
  })
 
-  res.render('user/orders')
+  res.render('user/orders',{oders:orders})
 })
     
   
